@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import firebase from 'firebase';
 import { Header, Button, Spinner } from './src/components/common';
 import LoginForm from './src/components/LoginForm';
+import LoggedIn from './src/components/LoggedIn';
 
 class App extends Component {
-  state = { loggedIn: null };
+  state = { loggedIn: null, userEmail: '' };
 
   componentWillMount() {
     const config = {
@@ -20,7 +21,8 @@ class App extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ loggedIn: true });
+        const userEmail = user.email;
+        this.setState({ loggedIn: true, userEmail });
       } else {
         this.setState({ loggedIn: false });
       }
@@ -30,11 +32,7 @@ class App extends Component {
   renderContent() {
     switch (this.state.loggedIn) {
       case true:
-        return (
-          <Button onPress={() => firebase.auth().signOut()}>
-            Log Out
-          </Button>
-        );
+        return <LoggedIn email={this.state.userEmail} />;
       case false:
         return <LoginForm />;
       default:
