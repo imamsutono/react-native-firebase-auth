@@ -10,12 +10,12 @@ class App extends Component {
 
   componentWillMount() {
     const config = {
-      apiKey: 'AIzaSyAZZRFhxWNRL_EoKXVJFbVY7euC6tC3SZs',
-      authDomain: 'rnauth-8551c.firebaseapp.com',
-      databaseURL: 'https://rnauth-8551c.firebaseio.com',
-      projectId: 'rnauth-8551c',
-      storageBucket: 'rnauth-8551c.appspot.com',
-      messagingSenderId: '653330048215'
+      apiKey: '',
+      authDomain: '',
+      databaseURL: '',
+      projectId: '',
+      storageBucket: '',
+      messagingSenderId: ''
     };
     firebase.initializeApp(config);
 
